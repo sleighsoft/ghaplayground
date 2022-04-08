@@ -8,6 +8,8 @@
 
 name: IaC Workflow
 on:
+  pull_request:
+    branches: [main]
   push:
     branches: [main]
 
@@ -53,4 +55,4 @@ jobs:
     - name: Upload result to GitHub Code Scanning
       uses: github/codeql-action/upload-sarif@main
       with:
-        sarif_file: bridgecrew.sarif
+        sarif_file: results.sarif
