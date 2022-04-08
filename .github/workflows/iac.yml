@@ -10,7 +10,7 @@ name: IaC Workflow
 on:
   push:
     branches: [main]
-    
+
 jobs:
   snyk:
     runs-on: ubuntu-latest
@@ -43,14 +43,14 @@ jobs:
         api-key: ${{ secrets.BRIDGECREW_TOKEN }}
         download_external_modules: true
         soft_fail: true
-        output_format: cli+sarif
+        output_format: sarif
         directory: iac/
     - name: Expose report
       uses: actions/upload-artifact@main
       with:
         name: SARIF results
-        path: results.sarif
+        path: bridgecrew.sarif
     - name: Upload result to GitHub Code Scanning
       uses: github/codeql-action/upload-sarif@main
       with:
-        sarif_file: results.sarif
+        sarif_file: bridgecrew.sarif
